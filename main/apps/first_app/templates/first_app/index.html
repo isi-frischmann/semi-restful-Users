@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Users</title>
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" href="{% static 'first_app\stylesheet.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="main.js"></script>
+</head>
+
+<body>
+    
+    <h1> Users </h1>
+    
+
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Created At</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for i in user %}
+              <tr>
+                <th scope="row">{{ i.id }}</th>
+                <td> {{ i.fname }} </td>
+                <td>{{ i.email }}</td>
+                <td>{{ i.created_at }}</td>
+                <td>
+                  <!-- Don't forget to connect with the routes!!! -->
+                  <!-- The users/show shows which rout should be rendered -->
+                  <!-- And the id is conntected which user should be updated -->
+                    <a href="/users/show/{{i.id}}">SHOW </a> |
+                    <a href="/users/edit/{{i.id}}">EDIT </a> |
+                    <a href="/users/destroy/{{i.id}}">DELETE</a>
+      
+                </td>
+              </tr>
+           
+            </tbody>
+            {% endfor %}
+          </table>
+
+        <a href='/users/new'>Add a new user</a>
+
+</body>
+

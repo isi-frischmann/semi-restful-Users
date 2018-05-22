@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Edit User</title>
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="main.js"></script>
+</head>
+<body>
+    
+    <h1>Edit User # {{ user.id }}</h1>
+
+    <div>
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{message}}</p>
+        {% endfor %}
+    {% endif %}
+
+    </div>
+    <!-- users/update is the url urls.py file and the {{user.id}} is the context from the method in the views.py file-->
+    <form action='/users/update/{{user.id}}' method='POST'>
+
+        {% csrf_token %}
+
+        <p>Frist name:</p>
+        <input type='text' name='fname'>
+
+        <p>Email:</p>
+        <input type='text' name='email'><br>
+
+        <!-- When the submit button is clicked the function in the action should be run -->
+        <input type="submit" name="update" value="Update"><br>
+
+        <a href='/users/show/{{user.id}}'>Show</a> | <a href='/'>Go Back</a>
+    </form>
+
+</body>
+</html>
